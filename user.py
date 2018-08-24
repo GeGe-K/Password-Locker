@@ -31,3 +31,18 @@ class User:
     delete_user method deletes a saved user from user_list
     '''
     User.user_list.remove(self)
+
+  @classmethod
+  def user_present(cls,username):
+        '''
+        Method that checks if a user is present in the user_list.
+        Args:
+            username: Username to search if it exists
+        Returns :
+            Boolean: True or false depending on if the user is present
+        '''
+        for user in cls.user_list:
+            if user.username == username:
+                    return True
+
+        return False    
