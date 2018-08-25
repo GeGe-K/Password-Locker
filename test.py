@@ -112,5 +112,14 @@ class TestCredentials(unittest.TestCase):
         self.new_credentials.save_credentials() #saving new credentials
         self.assertEqual(len(Credentials.credentials_list),1)
 
+      def test_save_multiple_credentials(self):
+        '''
+        method that checks if we can save multiple credentials objects to credentials_list
+        '''  
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("Github","Gift-Lumumba","gL0711419032")
+        test_credentials.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list),2)
+
 if __name__ == '__main__':
     unittest.main()
