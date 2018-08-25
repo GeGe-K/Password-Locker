@@ -72,10 +72,15 @@ class Credentials:
         password:New credentials password .
 
     '''
-    
+
     self.account_name = account_name
     self.username = username 
     self.password = password
 
-  
+  def save_credentials(self):
+    
+    '''
+    save_credentials method that saves credentials object into credentials_list
+    '''
+    Credentials.credentials_list.append(self)
   
