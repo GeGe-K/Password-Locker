@@ -152,8 +152,15 @@ class TestCredentials(unittest.TestCase):
         test_credentials = Credentials("Github","Gift-Lumumba","gL0711419032")
         test_credentials.save_credentials()
 
-        credentials_exists = Credentials.credentials_exist("Github")
+        credentials_exists =Credentials.credentials_exist("Github")
         self.assertTrue(credentials_exists)
+
+      def test_display_all_credentials(self):
+        '''
+        returns a list of all credentials saved 
+        '''  
+
+        self.assertEqual( Credentials.display_credentials(),Credentials.credentials_list)
 
 if __name__ == '__main__':
     unittest.main()
