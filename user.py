@@ -72,6 +72,10 @@ class Credentials:
         password:New credentials password .
 
     '''
+    
     self.account_name = account_name
     self.username = username 
     self.password = password
+
+  
+  
