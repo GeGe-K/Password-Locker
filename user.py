@@ -33,13 +33,13 @@ class User:
     User.user_list.remove(self)
 
   @classmethod
-  def user_present(cls,username):
+  def user_exists(cls,username):
         '''
-        Method that checks if a user is present in the user_list.
+        Method that checks if a user exists in the user_list.
         Args:
             username: Username to search if it exists
         Returns :
-            Boolean: True or false depending on if the user is present
+            Boolean: True or false depending on if the user exists or not
         '''
         for user in cls.user_list:
             if user.username == username:
