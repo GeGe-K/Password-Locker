@@ -143,5 +143,17 @@ class TestCredentials(unittest.TestCase):
         found_credentials =Credentials.find_by_account_name("Github")
         self.assertEqual(found_credentials.password,test_credentials.password)
 
+      def test_credentials_exists(self):
+        '''
+        checks if we can return a boolean if we cannot find the credentials
+        '''  
+
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("Github","Gift-Lumumba","gL0711419032")
+        test_credentials.save_credentials()
+
+        credentials_exists = Credentials.credentials_exist("Github")
+        self.assertTrue(credentials_exists)
+
 if __name__ == '__main__':
     unittest.main()
