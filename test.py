@@ -57,17 +57,17 @@ class TestUser(unittest.TestCase):
         self.new_user.delete_user() #deletes user object
         self.assertEqual(len(User.user_list),1)
 
-      def test_user_present(self):
+      def test_user_exists(self):
         '''
-        test to check whether a user is present or not.
+        test to check whether a user exists or not.
         '''
         self.new_user.save_user()
         test_user = User("Test","gL1998") # new user created
         test_user.save_user()
 
-        user_present = User.user_present("Test")
+        user_exists =User.user_exists("Test")
 
-        self.assertTrue(user_present)
+        self.assertTrue(user_exists)
 
 
 
