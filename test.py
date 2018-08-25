@@ -76,6 +76,14 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual( User.display_users(),User.user_list)
 
+class TestCredentials(unittest.TestCase):
+  '''
+  Test class that defines test cases for credentials class behaviours.
+
+  Args:
+      unittest.TestCase:TestCase class helping in creating test cases
+  '''        
+
 
 if __name__ == '__main__':
     unittest.main()
