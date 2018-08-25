@@ -119,3 +119,10 @@ class Credentials:
         return True
 
     return False    
+
+  @classmethod
+  def display_credentials(cls):
+    '''
+    returns credentials list
+    '''  
+    return cls.credentials_list
