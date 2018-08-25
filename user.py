@@ -54,3 +54,24 @@ class User:
     '''
 
     return cls.user_list
+
+class Credentials:
+  '''
+  class that generates new instances of the user's credentials
+  '''
+
+  credentials_list=[] #empty credentials list
+
+  def __init__(self,account_name,username,password):
+    '''
+    __init__ method for definition of object properties.
+
+    Args:
+        account_name:New credentials account name.
+        username:New credentials username.
+        password:New credentials password .
+
+    '''
+    self.account_name = account_name
+    self.username = username 
+    self.password = password
