@@ -1,5 +1,5 @@
 import unittest
-from user import User
+from user import User,Credentials
 
 class TestUser(unittest.TestCase):
 
@@ -77,13 +77,33 @@ class TestUser(unittest.TestCase):
         self.assertEqual( User.display_users(),User.user_list)
 
 class TestCredentials(unittest.TestCase):
-  '''
-  Test class that defines test cases for credentials class behaviours.
+      '''
+      Test class that defines test cases for credentials class behaviours.
 
-  Args:
+      Args:
       unittest.TestCase:TestCase class helping in creating test cases
-  '''        
+      '''   
 
+      def setUp(self):
+        '''
+        Set up method to run before each test cases.
+        ''' 
+        self.new_credentials = Credentials ("Facebook","Gift Lumumba","0721851691") #created credentials object
+
+      def tearDown(self):
+        '''
+        tearDown method that does clean up after each test has been run
+        '''  
+        Credentials.credentials_list = []
+
+      def test_init(self):
+        '''
+        test_init test case to test if the object is initialized properly
+        '''
+
+        self.assertEqual(self.new_credentials.account_name,"Facebook")
+        self.assertEqual(self.new_credentials.username,"Gift Lumumba")
+        self.assertEqual(self.new_credentials.password,"0721851691")
 
 if __name__ == '__main__':
     unittest.main()
