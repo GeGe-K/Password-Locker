@@ -1,3 +1,5 @@
+import pyperclip
+
 class User:
   """
   Class that generates details about the user
@@ -126,3 +128,8 @@ class Credentials:
     returns credentials list
     '''  
     return cls.credentials_list
+
+  @classmethod
+  def copy_account_name(cls,account_name):
+    credentials_found = Credentials.find_by_account_name(account_name)
+    pyperclip.copy(credentials_found.account_name)  
