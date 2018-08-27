@@ -74,12 +74,12 @@ class User:
         if user.username == username:
                 return user  
 
-class Credentials:
+class Credential:
   '''
   class that generates new instances of the user's credentials
   '''
 
-  credentials_list=[] #empty credentials list
+  credential_list=[] #empty credentials list
 
   def __init__(self,account_name,username,password):
     '''
@@ -96,18 +96,18 @@ class Credentials:
     self.username = username 
     self.password = password
 
-  def save_credentials(self):
+  def save_credential(self):
 
     '''
     save_credentials method that saves credentials object into credentials_list
     '''
-    Credentials.credentials_list.append(self)
-  def delete_credentials(self):
+    Credential.credential_list.append(self)
+  def delete_credential(self):
     '''
     deletes a saved credential from credentials_list
     '''
 
-    Credentials.credentials_list.remove(self)
+    Credential.credential_list.remove(self)
 
   @classmethod
   def find_by_account_name(cls,account_name):
@@ -120,12 +120,12 @@ class Credentials:
         Credentials of person that matches the account name
     '''  
 
-    for credentials in cls.credentials_list:
-      if credentials.account_name == account_name:
-        return credentials
+    for credential in cls.credential_list:
+      if credential.account_name == account_name:
+        return credential
 
   @classmethod
-  def credentials_exist(cls,account_name):
+  def credential_exists(cls,account_name):
     '''
     checks if a credential exists in the credentials list.
     Args:
@@ -133,20 +133,20 @@ class Credentials:
     Returns:
         Boolean:True or false depending on if the credential exists    
     '''      
-    for credential in cls.credentials_list:
+    for credential in cls.credential_list:
       if credential.account_name == account_name:
         return True
 
     return False    
 
   @classmethod
-  def display_credentials(cls):
+  def display_credential(cls):
     '''
-    returns credentials list
+    returns credential list
     '''  
-    return cls.credentials_list
+    return cls.credential_list
 
   @classmethod
   def copy_account_name(cls,account_name):
-    credentials_found = Credentials.find_by_account_name(account_name)
-    pyperclip.copy(credentials_found.account_name)  
+    credential_found = Credential.find_by_account_name(account_name)
+    pyperclip.copy(credential_found.account_name)  

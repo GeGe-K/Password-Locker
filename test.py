@@ -1,6 +1,6 @@
 import unittest
 import pyperclip
-from user import User,Credentials
+from user import User,Credential
 
 class TestUser(unittest.TestCase):
 
@@ -77,7 +77,7 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual( User.display_users(),User.user_list)
 
-class TestCredentials(unittest.TestCase):
+class TestCredential(unittest.TestCase):
       '''
       Test class that defines test cases for credentials class behaviours.
 
@@ -89,89 +89,89 @@ class TestCredentials(unittest.TestCase):
         '''
         Set up method to run before each test cases.
         ''' 
-        self.new_credentials = Credentials ("Facebook","Gift Lumumba","0721851691") #created credentials object
+        self.new_credential = Credential ("Facebook","Gift Lumumba","0721851691") #created credentials object
 
       def tearDown(self):
         '''
         tearDown method that does clean up after each test has been run
         '''  
-        Credentials.credentials_list = []
+        Credential.credential_list = []
 
       def test_init(self):
         '''
         test_init test case to test if the object is initialized properly
         '''
 
-        self.assertEqual(self.new_credentials.account_name,"Facebook")
-        self.assertEqual(self.new_credentials.username,"Gift Lumumba")
-        self.assertEqual(self.new_credentials.password,"0721851691")
+        self.assertEqual(self.new_credential.account_name,"Facebook")
+        self.assertEqual(self.new_credential.username,"Gift Lumumba")
+        self.assertEqual(self.new_credential.password,"0721851691")
 
-      def test_save_credentials(self):
+      def test_save_credential(self):
         '''
         test_save_credentials test case to test if the credentials object has been saved into the credentials list
         '''  
-        self.new_credentials.save_credentials() #saving new credentials
-        self.assertEqual(len(Credentials.credentials_list),1)
+        self.new_credential.save_credential() #saving new credentials
+        self.assertEqual(len(Credential.credential_list),1)
 
-      def test_save_multiple_credentials(self):
+      def test_save_multiple_credential(self):
         '''
         method that checks if we can save multiple credentials objects to credentials_list
         '''  
-        self.new_credentials.save_credentials()
-        test_credentials = Credentials("Github","Gift-Lumumba","gL0711419032")
-        test_credentials.save_credentials()
-        self.assertEqual(len(Credentials.credentials_list),2)
+        self.new_credential.save_credential()
+        test_credential = Credential("Github","Gift-Lumumba","gL0711419032")
+        test_credential.save_credential()
+        self.assertEqual(len(Credential.credential_list),2)
 
-      def test_delete_credentials(self):
+      def test_delete_credential(self):
         '''
         tests if we can delete a credential from our credentials list
         '''  
-        self.new_credentials.save_credentials()
-        test_credentials = Credentials("Github","Gift-Lumumba","gL0711419032")
-        test_credentials.save_credentials()
+        self.new_credential.save_credential()
+        test_credential = Credential("Github","Gift-Lumumba","gL0711419032")
+        test_credential.save_credential()
 
-        self.new_credentials.delete_credentials() #deletes credentials object
-        self.assertEqual (len(Credentials.credentials_list),1)
+        self.new_credential.delete_credential() #deletes credentials object
+        self.assertEqual (len(Credential.credential_list),1)
 
-      def test_find_credentials_by_account_name(self):
+      def test_find_credential_by_account_name(self):
         '''
         to check if we can find a credential by the account name and display more information about it
         '''  
-        self.new_credentials.save_credentials()
-        test_credentials = Credentials("Github","Gift-Lumumba","gL0711419032")
-        test_credentials.save_credentials()
+        self.new_credential.save_credential()
+        test_credential = Credential("Github","Gift-Lumumba","gL0711419032")
+        test_credential.save_credential()
 
-        found_credentials =Credentials.find_by_account_name("Github")
-        self.assertEqual(found_credentials.password,test_credentials.password)
+        found_credential =Credential.find_by_account_name("Github")
+        self.assertEqual(found_credential.password,test_credential.password)
 
-      def test_credentials_exists(self):
+      def test_credential_exists(self):
         '''
         checks if we can return a boolean if we cannot find the credentials
         '''  
 
-        self.new_credentials.save_credentials()
-        test_credentials = Credentials("Github","Gift-Lumumba","gL0711419032")
-        test_credentials.save_credentials()
+        self.new_credential.save_credential()
+        test_credential = Credential("Github","Gift-Lumumba","gL0711419032")
+        test_credential.save_credential()
 
-        credentials_exists =Credentials.credentials_exist("Github")
-        self.assertTrue(credentials_exists)
+        credential_exists =Credential.credential_exists("Github")
+        self.assertTrue(credential_exists)
 
-      def test_display_all_credentials(self):
+      def test_display_all_credential(self):
         '''
         returns a list of all credentials saved 
         '''  
 
-        self.assertEqual( Credentials.display_credentials(),Credentials.credentials_list)
+        self.assertEqual( Credential.display_credential(),Credential.credential_list)
 
       def test_copy_account_name(self):
         '''
         test to confirm we are copying the account name from a found credentials
         '''
 
-        self.new_credentials.save_credentials()
-        Credentials .copy_account_name("Facebook")
+        self.new_credential.save_credential()
+        Credential .copy_account_name("Facebook")
 
-        self.assertEqual(self.new_credentials.account_name,pyperclip.paste())
+        self.assertEqual(self.new_credential.account_name,pyperclip.paste())
 
 if __name__ == '__main__':
     unittest.main()

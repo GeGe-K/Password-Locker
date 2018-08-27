@@ -2,7 +2,7 @@
 import string
 import random
 from random import choice
-from user import User,Credentials
+from user import User,Credential
 
 def create_user(username,password):
     '''
@@ -33,10 +33,10 @@ def create_credential(account_name,username,password):
     '''
     Function that creates a new credential
     '''
-    new_credential = Credentials (account_name,username,password)
+    new_credential = Credential (account_name,username,password)
     return new_credential
 
-def save_credentials(credential):
+def save_credential(credential):
     '''
     saves a credential
     '''
@@ -47,25 +47,25 @@ def delete_credential(account_name):
     '''
     deletes a credential
     '''
-    Credentials.delete_credentials(account_name)
+    Credential.delete_credential(account_name)
 
 def find_credential(account_name):
     '''
     finds a credential by account_name and returns the credential
     '''
-    return Credentials.find_by_account_name(account_name)
+    return Credential.find_by_account_name(account_name)
 
 def check_existing_credentials(account_name):
     '''
     checks if a credential exists with that account_name and returns a Boolean value
     '''
-    return Credentials.credentials_exist(account_name)
+    return Credential.credential_exist(account_name)
 
-def display_credentials():
+def display_credential():
     '''
     returns all saved credentials
     '''
-    return Credentials.display_credentials()
+    return Credential.display_credential()
 
 
 
@@ -118,7 +118,7 @@ def main():
                         username=input()
                         print("Enter password:")
                         password=input()
-                        save_credentials(create_credential(account_name,username,password))
+                        save_credential(create_credential(account_name,username,password))
                         print('\n')
                         print(f"You have successfully created a new credential for your new {account_name} account.")
                         print('\n')
@@ -131,13 +131,13 @@ def main():
 
         elif in_short_code == 'dc':
                         print('/n')
-                        if display_credentials():
+                        if display_credential():
                             print("Below is a list of all your credentials:")
                             print('\n')
-                            for credentials in display_credentials():
-                                print(f"Account: {credentials.account_name}")
-                                print(f"Username: {credentials.username}")
-                                print(f"Password: {credentials.password}")
+                            for credential in display_credential():
+                                print(f"Account: {credential.account_name}")
+                                print(f"Username: {credential.username}")
+                                print(f"Password: {credential.password}")
                                 print('\n')
                         else:
                             print("\n Sorry,You do not have any credentials to display")
