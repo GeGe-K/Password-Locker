@@ -59,7 +59,7 @@ def check_existing_credentials(account_name):
     '''
     checks if a credential exists with that account_name and returns a Boolean value
     '''
-    return Credential.credential_exist(account_name)
+    return Credential.credential_exists(account_name)
 
 def display_credential():
     '''
@@ -76,12 +76,12 @@ def main():
     print('\n')
 
     while True:
-        print("Use these short codes: cu - create a new user ,du - display users,fa - find account,fu- find a user,cc- create a new credential, gp - generate new password ,da- delete account ,ex - exit user list")
+        print("Use these short codes: ca - create a new user ,si - sign in to your account ,dc - display credentials,fa - find account,fu- find a user,cc- create a new credential, gp - generate new password ,da- delete account ,ex - exit user list")
         in_short_code = input().lower()
 
 
-        if in_short_code == 'cu':
-            print("Create a new user account by following the following steps:")
+        if in_short_code == 'ca':
+            print("Create a new account by following the steps below:")
             print("Enter any username you wish to use for your account")
             username = input()
             print("Enter password:")
@@ -90,6 +90,17 @@ def main():
             save_users(create_user(username,password))
             print('\n')
             print(f"Thank you {username}, you may now proceed to open up your account")
+            print('\n')
+
+        elif in_short_code == 'si':
+          print('\n')
+          print("Enter your account username:")
+          username =input()
+          print("Enter Password:")
+          password=input()
+          if check_existing_users(username):
+            saved_user = find_user(username)  
+            print(f"Welcome to your account {saved_user.username}")  
             print('\n')
 
         elif in_short_code == 'fu':
@@ -135,23 +146,45 @@ def main():
                             print("Below is a list of all your credentials:")
                             print('\n')
                             for credential in display_credential():
-                                print(f"Account: {credential.account_name}")
+                                print(f"Name of Account: {credential.account_name}")
                                 print(f"Username: {credential.username}")
                                 print(f"Password: {credential.password}")
                                 print('\n')
                         else:
                             print("\n Sorry,You do not have any credentials to display")
 
+        elif in_short_code == 'fa':
+          print("Enter name of account you'd wish to search for")
+          search_account_name=input()
+          if check_existing_credentials(search_account_name):
+            search_credential= find_credential(search_account_name)
+            print(f"Name of the account: {search_account_name}")
+            print(f"Account Username: {search_credential.username}")
+            print(f"Account Password: {search_credential.password}")
 
-                
+          else:
+            print("Sorry,The entered credential does not exist")      
 
+        elif in_short_code == 'da':
+          print("Which account do you wish to delete?")
+          delete_account_name=input()
+          if check_existing_credentials(delete_account_name):
+            search_delete_credential= find_credential(delete_account_name)
+            delete_credential(search_delete_credential)
 
+            print(f"Your {delete_account_name} credentials have been successfully deleted")
 
-        else:
-                print("That account does not exist")
+          else:
+            print("Sorry,Credential does not exist")   
+
+        elif in_short_code == 'ex':
+          print("Goodbye...")
+          break
 
     else:
-            print("Short code not found,Please use the short codes")
+           print("Short code not found,Please use the short codes")
+
+       
 
         
                 
