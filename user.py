@@ -1,4 +1,6 @@
 import pyperclip
+import string
+from random import choice
 
 class User:
   """
@@ -57,6 +59,20 @@ class User:
     '''
 
     return cls.user_list
+
+  @classmethod
+  def find_by_username(cls,username):
+    '''
+    takes in a username and returns a user that matches that username.
+    Args:
+        username: username that is searched for.
+    Returns:
+        user that matches the username.
+    '''
+
+    for user in cls.user_list:
+        if user.username == username:
+                return user  
 
 class Credentials:
   '''
