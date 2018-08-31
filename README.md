@@ -19,7 +19,7 @@ The application doesn't run as expected since some functions have not been imple
 
 ## Technologies Used
 This application was created using:
-- Python version 6.1.2.
+- Python version 3.6
 - Visual Studio Code text editor.
 
 ## How to use the Application
